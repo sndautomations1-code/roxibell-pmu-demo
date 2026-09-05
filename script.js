@@ -19,6 +19,63 @@
     link.setAttribute('href', buildWaHref(key));
   });
 
+  /* ---- Menú móvil a pantalla completa ---- */
+  var navToggle = document.getElementById('nav-toggle');
+  var mobileMenu = document.getElementById('mobile-menu');
+  var mobileMenuClose = document.getElementById('mobile-menu-close');
+
+  if (navToggle && mobileMenu) {
+    var siteHeader = document.querySelector('.site-header');
+    var mainContent = document.getElementById('contenido');
+    var waFloat = document.querySelector('.wa-float');
+    var inertTargets = [siteHeader, mainContent, waFloat].filter(Boolean);
+
+    function setBackgroundInert(isInert) {
+      inertTargets.forEach(function (el) { el.inert = isInert; });
+    }
+
+    function openMenu() {
+      mobileMenu.hidden = false;
+      document.body.classList.add('menu-open');
+      navToggle.setAttribute('aria-expanded', 'true');
+      setBackgroundInert(true);
+      if (mobileMenuClose) mobileMenuClose.focus();
+    }
+
+    function closeMenu() {
+      mobileMenu.hidden = true;
+      document.body.classList.remove('menu-open');
+      navToggle.setAttribute('aria-expanded', 'false');
+      setBackgroundInert(false);
+      navToggle.focus();
+    }
+
+    navToggle.addEventListener('click', openMenu);
+    if (mobileMenuClose) mobileMenuClose.addEventListener('click', closeMenu);
+
+    mobileMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobileMenu.hidden = true;
+        document.body.classList.remove('menu-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        setBackgroundInert(false);
+      });
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !mobileMenu.hidden) closeMenu();
+    });
+
+    window.addEventListener('resize', function () {
+      if (window.innerWidth >= 768 && !mobileMenu.hidden) {
+        mobileMenu.hidden = true;
+        document.body.classList.remove('menu-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        setBackgroundInert(false);
+      }
+    });
+  }
+
   /* ---- Antes / después: pestañas ---- */
   var tabs = document.querySelectorAll('.ba__tab');
   var panels = document.querySelectorAll('.ba-media');
