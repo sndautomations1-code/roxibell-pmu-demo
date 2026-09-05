@@ -335,12 +335,8 @@ body.menu-open { overflow: hidden; }
 .hero__media {
   width: 100%;
   min-width: 0;
-  max-width: min(58vw, 230px);
+  max-width: 340px;
   margin: 0 auto;
-}
-
-@media (min-width: 600px) {
-  .hero__media { max-width: 340px; }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -361,7 +357,12 @@ body.menu-open { overflow: hidden; }
 }
 .img-frame img { width: 100%; height: 100%; object-fit: cover; }
 
-.img-frame--hero { aspect-ratio: 4 / 5; border-radius: var(--radius-lg); box-shadow: var(--shadow-soft); }
+.img-frame--hero {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+.img-frame--hero img { object-position: center 35%; }
 .img-frame--about { aspect-ratio: 1 / 1; border-radius: var(--radius-lg); }
 .img-frame--square { aspect-ratio: 1 / 1; border-radius: var(--radius-md); }
 
@@ -665,14 +666,15 @@ body.menu-open { overflow: hidden; }
   height: var(--wa-fab-size);
   padding: 0 20px;
   border-radius: var(--radius-pill);
-  background: var(--color-berry);
+  background: #C98B92;
   color: #fff;
   text-decoration: none;
   font-weight: 600;
   font-size: 0.95rem;
   box-shadow: var(--shadow-soft);
 }
-.wa-float__btn:active { background: var(--color-berry-dark); }
+.wa-float__btn:hover,
+.wa-float__btn:active { background: #B87A82; }
 .wa-float__btn .icon { width: 22px; height: 22px; fill: currentColor; flex-shrink: 0; }
 
 /* ==========================================================================
@@ -720,9 +722,10 @@ body.menu-open { overflow: hidden; }
    ========================================================================== */
 @media (min-width: 900px) {
   .hero { padding: 56px 0 72px; }
-  .hero__inner { flex-direction: row; align-items: center; gap: 56px; }
+  .hero .wrap { max-width: 1152px; padding: 0 32px; }
+  .hero__inner { flex-direction: row; align-items: center; gap: 64px; }
   .hero__text { flex: 1 1 320px; min-width: 0; }
-  .hero__media { flex: 0 1 40%; max-width: 420px; min-width: 240px; margin: 0; }
+  .hero__media { flex: 0 1 40%; max-width: 460px; min-width: 240px; margin: 0; }
   .hero__title { max-width: 20ch; }
 
   .section { padding: 72px 0; }
