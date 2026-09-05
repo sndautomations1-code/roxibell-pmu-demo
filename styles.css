@@ -258,11 +258,18 @@ body.menu-open { overflow: hidden; }
   color: var(--color-ink-soft);
   max-width: 46ch;
 }
-.hero__actions { margin-top: 20px; }
+.hero__actions { margin-top: 0; }
+.hero__cta { margin-top: 20px; }
 .hero__proof {
   margin: 12px 0 0;
   font-size: 0.875rem;
   color: var(--color-taupe-dark);
+}
+
+/* La pill flotante de WhatsApp ya cubre esta acción en móvil. */
+@media (max-width: 767px) {
+  .hero__cta { display: none; }
+  .hero__proof { margin-top: 0; }
 }
 .hero__media {
   width: 100%;
