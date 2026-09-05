@@ -18,6 +18,8 @@
 
   --font-display: 'Bodoni Moda', 'Times New Roman', Georgia, serif;
   --font-body: 'Work Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* Solo para el logotipo (wordmark) — nunca para títulos, botones o texto */
+  --font-script: 'Parisienne', cursive;
 
   --radius-lg: 22px;
   --radius-md: 14px;
@@ -136,15 +138,33 @@ button { font-family: inherit; }
   gap: 12px;
   min-height: 56px;
 }
-.brand {
-  font-family: var(--font-display);
-  font-size: 1.05rem;
+/* ---- Logotipo (wordmark): script solo aquí, nunca en títulos/botones/texto ---- */
+.brand,
+.mobile-menu__brand,
+.site-footer__brand {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1;
   text-decoration: none;
-  color: var(--color-ink);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
+.brand__first {
+  font-family: var(--font-script);
+  font-weight: 400;
+  font-size: 26px; /* por encima del mínimo legible de 22px en móvil */
+  line-height: 1;
+}
+.brand__last {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+  margin-top: 3px;
+}
+.site-footer__brand .brand__last { color: #cfc3b8; }
+
 .site-nav { display: none; }
 
 .nav-toggle {
@@ -187,11 +207,6 @@ button { font-family: inherit; }
   align-items: center;
   justify-content: space-between;
   min-height: 56px;
-}
-.mobile-menu__brand {
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  color: var(--color-ink);
 }
 .mobile-menu__close {
   display: inline-flex;
@@ -579,7 +594,7 @@ body.menu-open { overflow: hidden; }
 /* ---- Pie de página ---- */
 .site-footer { padding: 36px 0; background: var(--color-ink); color: var(--color-base-light); }
 .site-footer__inner { display: flex; flex-direction: column; gap: 10px; }
-.site-footer__brand { font-family: var(--font-display); font-size: 1.2rem; margin: 0; }
+.site-footer__brand { margin: 0; }
 .site-footer__address { font-size: 0.9rem; color: #cfc3b8; margin: 0; }
 .site-footer__links { display: flex; gap: 20px; margin-top: 6px; }
 .site-footer__links a {
@@ -649,6 +664,9 @@ body.menu-open { overflow: hidden; }
   }
   .site-nav a:hover { color: var(--color-berry); }
   .btn--small { display: inline-flex; }
+
+  .brand__first { font-size: 32px; }
+  .brand__last { font-size: 13px; }
 }
 
 /* ==========================================================================
