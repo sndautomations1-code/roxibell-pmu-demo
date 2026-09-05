@@ -497,36 +497,32 @@ body.menu-open { overflow: hidden; }
   margin: 0;
 }
 
-/* ---- Filtros de galería ---- */
-.filters {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
+/* ---- Galería ---- */
+#galeria { padding: 80px 0; }
+#galeria .section__title,
+#galeria .section__lead {
+  text-align: center;
 }
-.filter {
-  min-height: 44px;
-  padding: 9px 18px;
-  border-radius: var(--radius-pill);
-  border: 2px solid var(--color-border);
-  background: transparent;
-  color: var(--color-ink-soft);
-  font-weight: 600;
-  font-size: 0.95rem;
-  cursor: pointer;
+#galeria .section__title { margin-bottom: 0; }
+#galeria .section__lead {
+  margin: 12px auto 48px;
+  max-width: 28rem;
 }
-.filter.is-active {
-  background: var(--color-taupe-dark);
-  border-color: var(--color-taupe-dark);
-  color: #fff;
+@media (min-width: 900px) {
+  #galeria { padding: 112px 0; }
 }
 
 .gallery {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
+  max-width: 56rem;
+  margin: 0 auto;
 }
-.gallery__item[hidden] { display: none; }
+.gallery__item .img-frame--square { aspect-ratio: 4 / 5; border-radius: 16px; }
+@media (min-width: 768px) {
+  .gallery { gap: 24px; }
+}
 
 /* ---- Conóceme ---- */
 .conoceme {
@@ -670,7 +666,6 @@ body.menu-open { overflow: hidden; }
    ========================================================================== */
 @media (min-width: 600px) {
   .cards { grid-template-columns: repeat(3, 1fr); }
-  .gallery { grid-template-columns: repeat(3, 1fr); }
   .review { flex: 0 0 46%; }
   .location { flex-direction: row; align-items: stretch; }
   .location__info, .location__map { flex: 1; }
