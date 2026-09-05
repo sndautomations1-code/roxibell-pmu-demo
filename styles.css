@@ -374,30 +374,18 @@ body.menu-open { overflow: hidden; }
 .section__note { margin-top: 18px; font-size: 0.9rem; color: var(--color-ink-soft); }
 
 /* ---- Antes / después ---- */
-.ba__tabs {
-  display: flex;
-  gap: 10px;
-  overflow-x: auto;
-  padding-bottom: 4px;
-  margin-bottom: 20px;
-  -webkit-overflow-scrolling: touch;
+#resultados { padding: 80px 0; }
+#resultados .section__title,
+#resultados .section__lead {
+  text-align: center;
 }
-.ba__tab {
-  flex: 0 0 auto;
-  min-height: 44px;
-  padding: 10px 20px;
-  border-radius: var(--radius-pill);
-  border: 2px solid var(--color-border);
-  background: transparent;
-  color: var(--color-ink-soft);
-  font-weight: 600;
-  font-size: 0.95rem;
-  cursor: pointer;
+#resultados .section__title { margin-bottom: 0; }
+#resultados .section__lead {
+  margin: 12px auto 48px;
+  max-width: 28rem;
 }
-.ba__tab.is-active {
-  background: var(--color-ink);
-  border-color: var(--color-ink);
-  color: var(--color-base-light);
+@media (min-width: 900px) {
+  #resultados { padding: 112px 0; }
 }
 
 .ba-media__frame {
