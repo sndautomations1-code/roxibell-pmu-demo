@@ -219,8 +219,24 @@ button { font-family: inherit; }
   flex-direction: column;
   padding: 16px 20px calc(24px + env(safe-area-inset-bottom));
   overflow-y: auto;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.2s ease-out, transform 0.2s ease-out;
 }
-.mobile-menu[hidden] { display: none; }
+.mobile-menu.is-open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  will-change: opacity, transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu { transition: none; }
+}
+/* El desenfoque de la cabecera es costoso en GPUs móviles y se recalcula
+   en cada frame durante la transición del menú, así que se desactiva
+   mientras el menú está abierto. */
+body.menu-open .site-header { backdrop-filter: none; }
 
 .mobile-menu__top {
   display: flex;

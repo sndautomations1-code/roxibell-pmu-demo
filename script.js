@@ -35,7 +35,8 @@
     }
 
     function openMenu() {
-      mobileMenu.hidden = false;
+      mobileMenu.inert = false;
+      mobileMenu.classList.add('is-open');
       document.body.classList.add('menu-open');
       navToggle.setAttribute('aria-expanded', 'true');
       setBackgroundInert(true);
@@ -43,7 +44,8 @@
     }
 
     function closeMenu() {
-      mobileMenu.hidden = true;
+      mobileMenu.classList.remove('is-open');
+      mobileMenu.inert = true;
       document.body.classList.remove('menu-open');
       navToggle.setAttribute('aria-expanded', 'false');
       setBackgroundInert(false);
@@ -55,7 +57,8 @@
 
     mobileMenu.querySelectorAll('a').forEach(function (link) {
       link.addEventListener('click', function () {
-        mobileMenu.hidden = true;
+        mobileMenu.classList.remove('is-open');
+        mobileMenu.inert = true;
         document.body.classList.remove('menu-open');
         navToggle.setAttribute('aria-expanded', 'false');
         setBackgroundInert(false);
@@ -63,12 +66,13 @@
     });
 
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && !mobileMenu.hidden) closeMenu();
+      if (e.key === 'Escape' && mobileMenu.classList.contains('is-open')) closeMenu();
     });
 
     window.addEventListener('resize', function () {
-      if (window.innerWidth >= 768 && !mobileMenu.hidden) {
-        mobileMenu.hidden = true;
+      if (window.innerWidth >= 768 && mobileMenu.classList.contains('is-open')) {
+        mobileMenu.classList.remove('is-open');
+        mobileMenu.inert = true;
         document.body.classList.remove('menu-open');
         navToggle.setAttribute('aria-expanded', 'false');
         setBackgroundInert(false);
