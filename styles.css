@@ -146,15 +146,12 @@ button { font-family: inherit; }
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--color-border);
 }
-/* Grid de 3 columnas en móvil: columna izquierda del mismo ancho que el
-   botón de menú, para que el logotipo quede ópticamente centrado en el
-   viewport (no solo en el espacio libre). En escritorio vuelve a flex. */
 .site-header__inner {
-  display: grid;
-  grid-template-columns: 44px 1fr 44px;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 12px;
-  min-height: 64px;
+  min-height: 80px;
 }
 /* ---- Logotipo (wordmark): script solo aquí, nunca en títulos/botones/texto ---- */
 .brand,
@@ -166,9 +163,13 @@ button { font-family: inherit; }
   line-height: 1;
   text-decoration: none;
 }
-.brand {
-  grid-column: 2;
-  justify-self: center;
+.brand__logo {
+  display: block;
+  width: 150px;
+  height: auto;
+}
+@media (min-width: 768px) {
+  .brand__logo { width: 190px; }
 }
 .brand__first {
   font: var(--font-script);
@@ -187,8 +188,6 @@ button { font-family: inherit; }
 .site-nav { display: none; }
 
 .nav-toggle {
-  grid-column: 3;
-  justify-self: end;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -711,13 +710,6 @@ body.menu-open { overflow: hidden; }
   }
   .site-nav a:hover { color: var(--color-berry); }
   .btn--small { display: inline-flex; }
-
-  /* El hamburger desaparece en escritorio: vuelve al layout de flex simple. */
-  .site-header__inner {
-    display: flex;
-    justify-content: space-between;
-  }
-  .brand { justify-self: auto; }
 
   .brand__first { font: var(--font-script-lg); }
   .brand__last { font-size: 13px; }
