@@ -205,8 +205,30 @@ button { font-family: inherit; }
   stroke-width: 2;
   stroke-linecap: round;
 }
+.nav-toggle__bar {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar--top {
+  transform: translateY(6px) rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar--middle {
+  opacity: 0;
+}
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar--bottom {
+  transform: translateY(-6px) rotate(-45deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav-toggle__bar { transition: none; }
+}
 
-/* ---- Menú móvil a pantalla completa ---- */
+/* ---- Menú móvil a pantalla completa ----
+   Solo opacity y transform: son las únicas propiedades que el
+   compositor puede animar sin recalcular layout/paint en cada frame.
+   El panel permanece siempre montado y con transform distinto de
+   "none" en ambos estados, para que el navegador mantenga una única
+   capa GPU estable en vez de crearla/destruirla en cada apertura. */
 .mobile-menu {
   position: fixed;
   inset: 0;
@@ -217,7 +239,7 @@ button { font-family: inherit; }
   padding: 16px 20px calc(24px + env(safe-area-inset-bottom));
   overflow-y: auto;
   opacity: 0;
-  transform: translateY(8px);
+  transform: translateY(-8px);
   pointer-events: none;
   transition: opacity 0.2s ease-out, transform 0.2s ease-out;
 }
@@ -225,7 +247,6 @@ button { font-family: inherit; }
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
-  will-change: opacity, transform;
 }
 @media (prefers-reduced-motion: reduce) {
   .mobile-menu { transition: none; }
